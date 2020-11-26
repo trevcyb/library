@@ -78,6 +78,11 @@ header {
     position: relative;
 }
 
+.book-item:hover, .book-item:focus {
+    outline: none;
+    box-shadow: 0 2px 12px 0 white;
+}
+
 .book-item h2 {
     font-size: 1.35em;
     margin: 8px 5px 5px 8px;

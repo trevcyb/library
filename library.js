@@ -8,16 +8,16 @@ const addnewBook = document.querySelector('#newBook');
 const closeFormBtn = document.querySelector('#formCancel');
 const submitBook = document.querySelector('#formSubmit');
 const bookDisplay = document.querySelector('#bookDisplay');
-myLibrary[0] = new Book("The Witcher", "Andrzej Sapkowski", 500, "has not been read");
-myLibrary[1] = new Book("Harry Potter", "J.K. Rowling", 600, "has been read.");
-myLibrary[2] = new Book("The Art of War", "Sun Tzu", 100, "has been read.");
-myLibrary[3] = new Book("How to Win Friends and Influence People", "Dale Carnegie", 200, "has been read");
-myLibrary[4] = new Book("The Alchemist", "Paulo Coelho", 200, "has been read.")
-myLibrary[5] = new Book("The Witcher", "Andrzej Sapkowski", 500, "has not been read");
-myLibrary[6] = new Book("Harry Potter", "J.K. Rowling", 600, "has been read.");
-myLibrary[7] = new Book("The Art of War", "Sun Tzu", 100, "has been read.");
-myLibrary[8] = new Book("How to Win Friends and Influence People", "Dale Carnegie", 200, "has been read");
-myLibrary[9] = new Book("The Alchemist", "Paulo Coelho", 200, "has been read.")
+myLibrary[0] = new Book("The Witcher", "Andrzej Sapkowski", 500, false);
+myLibrary[1] = new Book("Harry Potter", "J.K. Rowling", 600, true);
+myLibrary[2] = new Book("The Art of War", "Sun Tzu", 100, true);
+myLibrary[3] = new Book("How to Win Friends and Influence People", "Dale Carnegie", 200, true);
+myLibrary[4] = new Book("The Alchemist", "Paulo Coelho", 200, true)
+myLibrary[5] = new Book("The Witcher", "Andrzej Sapkowski", 500, false);
+myLibrary[6] = new Book("Harry Potter", "J.K. Rowling", 600, true);
+myLibrary[7] = new Book("The Art of War", "Sun Tzu", 100, true);
+myLibrary[8] = new Book("How to Win Friends and Influence People", "Dale Carnegie", 200, true);
+myLibrary[9] = new Book("The Alchemist", "Paulo Coelho", 200, true)
 displayBook();
 
 function Book(name, author, pages, isRead) {
@@ -35,9 +35,9 @@ function addBooktoArray() {
     bookAuthor = document.getElementById('bookauthor').value;
     bookPage = document.getElementById('bookpage').value;
     if (document.getElementById('notRead').checked) {
-        bookIsRead = "has not been read.";
+        bookIsRead = false;
     } else if (document.getElementById('read').checked) {
-        bookIsRead = "has been read.";
+        bookIsRead = true;
     }
     myLibrary[i] = new Book(bookName, bookAuthor, bookPage, bookIsRead);
     console.log(myLibrary[i].info());
@@ -52,8 +52,26 @@ function addBooktoArray() {
 function displayBook() {
     for (c = 0; c < myLibrary.length; c++) {
         let cell = document.createElement('div');
-        cell.innerHTML = '<h2>' + myLibrary[c].name + '</h2>' + '<h3>' + myLibrary[c].author + '</h3>';
+        cell.setAttribute("tabindex","0");
+        cell.setAttribute("dataid", c)
+        cell.innerHTML = '<h2>' + myLibrary[c].name + '</h2>' + '<h3>' + myLibrary[c].author + '</h3>' ;
         bookDisplay.appendChild(cell).className = "book-item";
+
+        let btnset = document.createElement('div');
+        let bookitems = document.querySelectorAll(".book-item");
+        bookitems.forEach(bookitem => bookitem.appendChild(btnset).className = "btnset");
+
+        let remBtn = document.createElement('button');
+        let readBtn = document.createElement('button');
+        remBtn.setAttribute = ("id", "remBtn");
+        remBtn.setAttribute = ("type", "button");
+        remBtn.innerHTML = "&#10008";
+        readBtn.setAttribute = ("id", "readBtn");
+        readBtn.setAttribute = ("type", "button");
+        readBtn.innerHTML = "&#10004";
+        btnset = document.querySelectorAll(".btnset");
+        btnset.forEach(btn => btn.appendChild(remBtn).className = "editbtn");
+        btnset.forEach(btn => btn.appendChild(readBtn).className = "editbtn");
     }
 }
 
