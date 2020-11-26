@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Librarious</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>Librarious</header>
+    <button type="button" id="newBook">Add a New Book</button>
+    <div id="popupForm">
+        <form id="bookForm">
+            <h1>Add a New Book</h1>
+            <label for="name">What's the name of your book?</label>
+            <input id="bookname" type="text" placeholder="e.g. Harry Potter" name="bookname" required>
+
+            <label for="author">Who's the author of this new book?</label>
+            <input id="bookauthor" type="text" placeholder="e.g. J.K. Rowling" name="bookauthor" required>
+
+            <label for="pages">How many pages does this book have?</label>
+            <input id="bookpage" type="number" placeholder="e.g. 394" name="bookpages" required>
+
+            <label for="isRead">Have you read this book already?</label>
+            <input type="radio" id="notRead" name="isRead" value="notread">
+            <label for="notRead" class="radlabel">I haven't started yet</label>
+            <input type="radio" id="read" name="isRead" value="read">
+            <label for="read" class="radlabel">I've finished already</label>
+
+            <button type="button" id="formSubmit" class="formbtn">Submit</button>
+            <button type="button" id="formCancel" class="formbtn">Cancel</button>
+        </form>
+    </div>
+    <div id="bookDisplay">
+    </div>
+</body>
+<script src="library.js"></script>
+
+</html>
