@@ -87,6 +87,7 @@ header {
     font-size: 1.35em;
     margin: 8px 5px 5px 8px;
     color: white;
+    z-index: 2;
 }
 
 .book-item h3 {
@@ -97,4 +98,19 @@ header {
     text-align: center;
     margin-bottom: 8px;
     color: white;
+}
+
+
+#remBtn {
+    display: none;
+    position: absolute;
+    right:0;
+    top:12%;
+}
+
+#readBtn {
+    display: none;
+    position: absolute;
+    right:0;
+    top:0;
 }

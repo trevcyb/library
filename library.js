@@ -8,6 +8,8 @@ const addnewBook = document.querySelector('#newBook');
 const closeFormBtn = document.querySelector('#formCancel');
 const submitBook = document.querySelector('#formSubmit');
 const bookDisplay = document.querySelector('#bookDisplay');
+const bookdivs = document.querySelectorAll('.book-item');
+
 myLibrary[0] = new Book("The Witcher", "Andrzej Sapkowski", 500, false);
 myLibrary[1] = new Book("Harry Potter", "J.K. Rowling", 600, true);
 myLibrary[2] = new Book("The Art of War", "Sun Tzu", 100, true);
@@ -63,10 +65,10 @@ function displayBook() {
 
         let remBtn = document.createElement('button');
         let readBtn = document.createElement('button');
-        remBtn.setAttribute = ("id", "remBtn");
+        remBtn.id = "remBtn";
         remBtn.setAttribute = ("type", "button");
         remBtn.innerHTML = "&#10008";
-        readBtn.setAttribute = ("id", "readBtn");
+        readBtn.id ="readBtn";
         readBtn.setAttribute = ("type", "button");
         readBtn.innerHTML = "&#10004";
         btnset = document.querySelectorAll(".btnset");
@@ -83,8 +85,15 @@ function closeForm() {
     document.getElementById("popupForm").style.display = "none";
 }
 
+function showBtns() {
+    document.getElementById("readBtn").style.display = "inline-block";
+    document.getElementById("remBtn").style.display = "inline-block";
+}
+
 addnewBook.addEventListener("click", openForm);
 
 submitBook.addEventListener("click", addBooktoArray);
 
 closeFormBtn.addEventListener("click", closeForm);
+
+bookdivs.forEach(bookdiv => bookdiv.addEventListener("click", showBtns));
