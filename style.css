@@ -100,17 +100,22 @@ header {
     color: white;
 }
 
+#bookDisplay button {
+    display: none;
+}
 
 #remBtn {
-    display: none;
     position: absolute;
     right:0;
     top:12%;
+    border:none;
+    opacity: 0.7;
 }
 
 #readBtn {
-    display: none;
     position: absolute;
     right:0;
     top:0;
+    border:none;
+    opacity: 0.7;
 }
