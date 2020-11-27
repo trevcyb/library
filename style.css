@@ -9,6 +9,16 @@ header {
     font-size: 50px;
 }
 
+#newBook {
+    border: 1px solid white;
+    background-color: rgb(16, 49, 41);
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    align-items: center;
+    margin: 20px 0px 20px  0px;
+}
+
 #popupForm {
     display: none;
     position: fixed;
