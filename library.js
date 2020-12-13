@@ -3,31 +3,36 @@ let bookName;
 let bookAuthor;
 let bookPage;
 let bookIsRead;
-let i = 9;
+let savedJSON = [];
+let i = 0;
 const addnewBook = document.querySelector('#newBook');
 const closeFormBtn = document.querySelector('#formCancel');
 const submitBook = document.querySelector('#formSubmit');
 const bookDisplay = document.querySelector('#bookDisplay');
+const saveButton = document.querySelector('#saveButton');
+const storedLibrary = localStorage.getItem('savedLibrary');
 
-myLibrary[0] = new Book("The Witcher", "Andrzej Sapkowski", 500, false);
-myLibrary[1] = new Book("Harry Potter", "J.K. Rowling", 600, true);
-myLibrary[2] = new Book("The Art of War", "Sun Tzu", 100, true);
-myLibrary[3] = new Book("How to Win Friends and Influence People", "Dale Carnegie", 200, true);
-myLibrary[4] = new Book("The Alchemist", "Paulo Coelho", 200, true)
-myLibrary[5] = new Book("The Witcher", "Andrzej Sapkowski", 500, false);
-myLibrary[6] = new Book("Harry Potter", "J.K. Rowling", 600, true);
-myLibrary[7] = new Book("The Art of War", "Sun Tzu", 100, true);
-myLibrary[8] = new Book("How to Win Friends and Influence People", "Dale Carnegie", 200, true);
-myLibrary[9] = new Book("The Alchemist", "Paulo Coelho", 200, true)
+class Book {
+    constructor(name, author, pages, isRead) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+    info = () => {
+        return (this.name + " by " + this.author + ", " + this.pages + " pages, " + this.isRead);
+    };
+}
+
+showSavedLibrary();
 displayBook();
 
-function Book(name, author, pages, isRead) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.info = function () {
-        return (name + " by " + author + ", " + pages + " pages, " + isRead);
+function showSavedLibrary() {
+    if (storedLibrary) {
+        myLibrary = JSON.parse(storedLibrary);
+        i = myLibrary.length;
+    } else {
+        myLibrary = [];
     }
 }
 
@@ -46,6 +51,12 @@ function addBooktoArray() {
 
     let bookGrid = document.querySelectorAll(".book-item");
     bookGrid.forEach(book => book.remove());
+
+    document.getElementById('bookname').value = '';
+    document.getElementById('bookauthor').value = '';
+    document.getElementById('bookpage').value = '';
+    document.getElementById('notRead').checked = false;
+    document.getElementById('read').checked = false;
 
     displayBook();
 }
@@ -75,7 +86,7 @@ function displayBook() {
         } else if (myLibrary[c].isRead === false) {
             readBtn.innerHTML = "&#128517 Haven't Started";
         }
-        
+
         btnset = document.querySelectorAll(".btnset");
         btnset.forEach(btn => btn.appendChild(remBtn).className = "editbtn" + c);
         btnset.forEach(btn => btn.appendChild(readBtn).className = "editbtn" + c);
@@ -137,12 +148,15 @@ function closeForm() {
     document.getElementById("popupForm").style.display = "none";
 }
 
+function saveLibrary() {
+    savedJSON = (JSON.stringify(myLibrary));
+    localStorage.setItem('savedLibrary', savedJSON);
+}
+
+saveButton.addEventListener("click", saveLibrary);
 
 addnewBook.addEventListener("click", openForm);
 
 submitBook.addEventListener("click", addBooktoArray);
 
 closeFormBtn.addEventListener("click", closeForm);
-
-
-
